@@ -1,0 +1,626 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="JustGO Travel Agency has been providing clients with the best travel guides, travel information, and vacation packages for more than a decade. We specialize in travel packages to Europe, Asia, Africa, South America, and the Caribbean. Our guides and services are second to none."
+  />
+  <meta
+    name="keywords"
+    content="travel agency, travel, travel guides, travel information, vacation packages, travel packages, Europe, Asia, Africa, South America, Caribbean"
+  />
+  <meta name="author" content="Stefan Gogov" />
+
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- SWIPER CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+  />
+  
+  {% load static %}
+<script>
+  var staticBaseUrl = "{% static '' %}";
+</script>
+
+  <!-- CSS --->
+  {% load static %}
+  <style>
+  /* Core Styles */
+  .offer-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+  }
+  
+  .travel-offers {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  }
+  
+  .offer {
+      margin: 20px 0;
+      flex-basis: calc(33.333% - 20px);
+      text-align: center;
+      position: relative;
+  }
+  
+  .offer-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: black;
+      color: white;
+      padding: 5px 10px;
+  }
+  
+  .offer-title {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+  }
+  
+  .offer-description {
+      color: grey;
+      margin-top: 0.5em;
+  }
+  
+  .offer-price {
+      font-weight: bold;
+      margin-top: 0.5em;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+      .offer {
+          flex-basis: calc(50% - 20px);
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .offer {
+          flex-basis: 100%;
+      }
+  }
+  
+  /* User Info Styles */
+  .user-info {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      cursor: pointer;
+      font-size: 1.1em;
+  }
+  
+  .user-name {
+      margin-right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+  }
+  
+  .user-info ion-icon {
+      vertical-align: middle;
+      margin-right: 5px;
+  }
+  
+  /* Dropdown Styles */
+  .user-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+      transition: opacity 0.3s ease-in-out;
+  }
+  
+  .user-dropdown li {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  
+  .user-dropdown li:hover {
+      background-color: #eaeaea;
+  }
+  
+  .user-info:hover .user-dropdown {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+  }
+  
+      .user-info {
+    position: relative;
+    display: inline-block;
+}
+
+.user-info ion-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.user-dropdown li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.user-dropdown li:hover {background-color: #f1f1f1;}
+
+.user-info:hover .user-dropdown {
+    display: block;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 1em; /* Adjust the font size to match other links in the header */
+    color: inherit; /* This will ensure the color matches other header elements */
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.user-info ion-icon[name="person-circle-outline"] {
+    margin-right: 5px;
+    font-size: 1.25em; /* Adjust the icon size to match the text */
+}
+
+/* Ensures the user dropdown matches the header style */
+.user-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff; /* Background color of the dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 4px; /* Optional: Rounds the corners of the dropdown */
+}
+
+.user-dropdown li {
+    color: #b97311; /* Text color of the dropdown items */
+    padding: 10px 15px;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.user-dropdown li:hover {
+    background-color: #f7f7f7; /* Hover background color for dropdown items */
+}
+
+/* Hover effect for the username and icon */
+.user-info:hover .user-dropdown {
+    display: block;
+}
+/* Additional styles for the header */
+.main-nav .user-info .user-name {
+    font-size: 1.5rem; /* Adjust to match the font size of other nav links */
+    color: #fff; /* Adjust to match the color of other nav links, assuming white */
+    margin-right: 10px; /* Adjust spacing to preference */
+    font-weight: normal; /* Adjust to match the font weight of other nav links */
+}
+
+.main-nav .user-info ion-icon[name="person-circle-outline"] {
+    font-size: 1.25rem; /* Adjust to align with the size of the text */
+    vertical-align: middle; /* Aligns the icon with the text */
+    color: #fff; /* Adjust to match the color of other nav links, assuming white */
+}
+
+/* Ensures the dropdown inherits styles from the user info */
+.main-nav .user-info .user-dropdown {
+    background-color: #330000; /* Adjust to match the nav color scheme */
+    color: #fff; /* Adjust for readable dropdown text */
+}
+
+.main-nav .user-info .user-dropdown li {
+    color: #fff; /* Adjust for readable dropdown items */
+}
+
+.main-nav .user-info .user-dropdown li:hover {
+    background-color: #330000; /* Adjust hover color to preference */
+}
+/* Styles pour les liens dans le menu déroulant */
+.user-info .user-dropdown a {
+  font-size: 1.25rem;
+    color: #ffffff; /* Remplacez cette couleur hexadécimale par celle que vous préférez */
+    /* Ajoutez d'autres propriétés de style si nécessaire */
+}
+
+/* Styles pour les liens dans le menu déroulant au survol */
+.user-info .user-dropdown a:hover {
+  font-size: 1.25rem; 
+    color: #ffffff; /* Couleur au survol, un peu plus foncée par exemple */
+    /* Ajoutez d'autres propriétés de style au survol si nécessaire */
+}
+
+
+.travel-offers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates a responsive grid layout */
+  gap: 20px; /* Space between the cards */
+  padding: 20px; /* Padding around the grid */
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.offer-image {
+  width: 100%;
+  height: auto; /* Keep the original aspect ratio */
+  object-fit: cover;
+}
+
+.offer-details {
+  padding: 15px;
+}
+
+.offer-duration,
+.offer-price {
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 5px;
+}
+
+.offer-price {
+  left: auto;
+  right: 10px;
+}
+
+.offer-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.offer-description {
+  font-size: 1rem;
+  color: #666;
+}
+
+.read-more {
+  margin-top: auto; /* Pushes the link to the bottom of the card */
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .travel-offers {
+    grid-template-columns: 1fr; /* Stacks the cards on smaller screens */
+  }
+}
+.offer-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show ellipsis after two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem; /* Add space for the 'Read more' link below the description */
+}
+
+.read-more {
+  display: block; /* Make 'Read more' its own line */
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+/* Ajoutez ces styles à votre balise style existante */
+/* Ajoutez ces styles à votre balise style existante */
+form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+input, select {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: calc(100% - 10px);
+  box-sizing: border-box;
+}
+
+select {
+  width: calc(100% - 10px);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  width: calc(100% - 10px);
+  box-sizing: border-box;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Ajoutez des styles pour améliorer l'apparence des champs, du bouton, etc. selon vos préférences */
+
+
+/* Ajoutez des styles pour améliorer l'apparence des champs, du bouton, etc. selon vos préférences */
+/* Ajoutez ces styles à votre balise style existante */
+.travel-offers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.offer:hover {
+  transform: scale(1.05);
+}
+
+.offer-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd; /* Ajoutez une bordure en bas de l'image */
+}
+
+.offer-details {
+  padding: 15px;
+}
+
+.offer-duration,
+.offer-price {
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 5px;
+}
+
+.offer-price {
+  left: auto;
+  right: 10px;
+}
+
+.offer-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.offer-description {
+  font-size: 1rem;
+  color: #666;
+}
+
+.read-more {
+  margin-top: auto;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Ajoutez des styles pour améliorer l'apparence des offres, des images, des titres, etc. selon vos préférences */
+/* Search Form Styles */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 800px; /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Light background for the form */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+input, select, button {
+  padding: 10px;
+  border: 1px solid #ddd; /* Uniform border style */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem; /* Readable font size */
+}
+
+input[type="text"], input[type="number"], select {
+  flex: 1 1 auto; /* Flex grow and shrink */
+  margin-right: 10px; /* Spacing between fields */
+}
+
+input[type="number"] {
+  max-width: 120px; /* Limit width for number inputs */
+}
+
+button {
+  background-color: #007bff; /* Primary color for the button */
+  color: #fff;
+  cursor: pointer;
+  border: none; /* Remove default border */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  form {
+    flex-direction: column;
+  }
+
+  input, select, button {
+    width: 100%; /* Full width on smaller screens */
+    margin-right: 0; /* Remove margin-right */
+    margin-bottom: 10px; /* Add space between fields */
+  }
+
+  button {
+    margin-bottom: 0; /* No margin at the bottom for the button */
+  }
+}
+
+/* Add your existing styles here */
+
+/* Header Styles */
+.header {
+    background-color: #333; /* Adjust to your color scheme */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav-link {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 15px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav-link:hover {
+    color: #007bff; /* Adjust to your hover color */
+}
+
+/* Add styling for other sections as needed */
+
+
+
+
+
+
+  </style>
+  <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href=" {% static 'css/queries.css' %} " />
+  <title>JustGO — Travel Agency</title>
+
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <a href="#">
+      {% load static %}
+     <img class="logo" src="{% static 'img/justGo-logo-light.png' %}" alt="justGO" />
+    </a>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+      <li><a class="main-nav-link" href="{% url 'blog:home' %}">Home</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_voyage' %}">Travel Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_special' %}">Special Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:activities' %}">Activity</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:about' %}">About us</a></li>
+      {% if user.is_authenticated %}
+      <li class="user-info">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span class="user-name">Hello, {{ user.username }}</span>
+        <ul class="user-dropdown">
+            <li><a href="{% url 'blog:Profile' %}">My profile</a></li>
+            <li><a href="{% url 'blog:logout' %}">Sing out</a></li>
+        </ul>
+      </li>
+      {% else %}
+      <li><a class="main-nav-link" href="{% url 'blog:signin' %}">Sing In</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:signup' %}">Register</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close"></ion-icon>
+    </button>
+  </header>
+  <div class="form-wrapper">
+    <form method="get" action="{% url 'blog:offres_voyage' %}">
+        <input type="text" name="location" placeholder="Keyword search" value="{{ request.GET.location }}">
+        <select name="activities">
+            <option value="" selected>All categories</option>
+            {% for genre, label in GENRE_CHOICES %}
+                <option value="{{ genre }}" {% if request.GET.activities == genre %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="select-destination" placeholder="Search by destination" value="{{ request.GET.destination }}">
+      <input type="number" name="prix_min" placeholder="Minimum price" value="{{ request.GET.prix_min }}">
+      <input type="number" name="prix_max" placeholder="Maximum price" value="{{ request.GET.prix_max }}">
+      <input type="number" name="duree_min" placeholder="Minimum duration" value="{{ request.GET.duree_min }}">
+        <!-- Add styling for other form elements -->
+        <button type="submit">Apply</button>
+    </form>
+</div>
+
+   
+<section class="travel-offers">
+  {% for offre_with_images in offres_with_images %}
+      <div class="offer">
+          <div class="offer-image-wrapper">
+              {% if offre_with_images.images %}
+                  <img src="{{ offre_with_images.images.0.image.url }}" alt="{{ offre_with_images.offre.title }}" class="offer-image">
+              {% endif %}
+              <span class="offer-duration">{{ offre_with_images.offre.duration }} days</span>
+              <span class="offer-price">${{ offre_with_images.offre.price }}</span>
+          </div>
+          <div class="offer-details">
+              <h3 class="offer-title">{{ offre_with_images.offre.title }}</h3>
+              <p class="offer-description">{{ offre_with_images.offre.description }}</p>
+              <a href="{% url 'blog:voyage' id=offre_with_images.offre.id %}" class="read-more">Read more →</a>
+          </div>
+      </div>
+  {% endfor %}
+</section>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/desvg@1.0.2/desvg.min.js"></script>
+  </body>

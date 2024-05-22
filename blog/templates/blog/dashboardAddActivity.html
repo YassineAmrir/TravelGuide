@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Go Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 250px);
+            transition: margin 0.3s ease;
+
+            @media (max-width: 768px) {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #007bff;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .main-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 70px; /* Ajustez la valeur en fonction de la hauteur de votre en-tête */
+        }
+
+        .profile-section {
+            width: 50%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .profile-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="logo">
+            {% load static %}
+            <img class="logo" src="{% static 'img/justGo-logo-light.png' %}" alt="justGO" />
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showSection('users')">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('offers')">Offers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('reservations')">Reservations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('activities'); return false;">Activities</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div id="content">
+        <main class="main-profile">
+            <section class="profile-section">
+                <h1 class="profile-heading">Add Activity</h1>
+<form class="profile-info" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="nom">Name:</label>
+    <input type="text"class="form-control" name="nom" required><br>
+
+    <label for="description">Description:</label>
+    <textarea name="description" class="form-control"required></textarea><br>
+
+    <label for="duration">Duration (in minutes):</label>
+    <input type="number" class="form-control"name="duration" required><br>
+
+    <label for="lieu">Location:</label>
+    <input type="text"class="form-control" name="lieu" required><br>
+
+    <label for="participants_min">Minimum Participants:</label>
+    <input type="number" class="form-control"name="participants_min" required><br>
+
+    <label for="participants_max">Maximum Participants:</label>
+    <input type="number"class="form-control" name="participants_max" required><br>
+
+    <label for="image">Image:</label>
+    <input type="file"class="form-control" name="image" accept="image/*"><br>
+
+    <label for="offre_voyage">Related Offer Voyage ID:</label>
+    <input type="number"class="form-control" name="offre_voyage" required><br>
+
+    <label for="prix_initial">Initial Price:</label>
+    <input type="number"class="form-control" name="prix_initial" step="0.01" required><br>
+
+    <label for="prix_promo">Promotional Price:</label>
+    <input type="number"class="form-control" name="prix_promo" step="0.01" required><br>
+
+    <button type="submit">Add Activity</button>
+  </form>
+</section>
+            
+</main>
+
+<!-- Bootstrap JS et ses dépendances -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+<script>
+  function showSection(sectionId) {
+      // Masquer toutes les sections
+      document.querySelectorAll('.section').forEach(section => section.classList.remove('active-section'));
+      // Afficher la section sélectionnée
+      document.getElementById(sectionId).classList.add('active-section');
+  }
+</script>
+
+</div>
+</body>
+
+</html>

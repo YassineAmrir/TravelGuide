@@ -1,0 +1,1005 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JustGO Travel Agency has been providing clients with the best travel guides, travel information, and vacation packages for more than a decade. We specialize in travel packages to Europe, Asia, Africa, South America, and the Caribbean. Our guides and services are second to none.">
+  <meta name="keywords" content="travel agency, travel, travel guides, travel information, vacation packages, travel packages, Europe, Asia, Africa, South America, Caribbean">
+  <meta name="author" content="Stefan Gogov">
+  <link rel="icon" href="{% static 'img/favicon.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+  <link rel="stylesheet" href="{% static 'css/general.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/queries.css' %}">
+  <title>JustGO — Travel Agency</title>
+</head>
+ 
+  <style>
+  
+  .offer-image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+  }
+  
+  .travel-offers {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  }
+  
+  .offer {
+      margin: 20px 0;
+      flex-basis: calc(33.333% - 20px);
+      text-align: center;
+      position: relative;
+  }
+  
+  .offer-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: black;
+      color: white;
+      padding: 5px 10px;
+  }
+  
+  .offer-title {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+  }
+  
+  .offer-description {
+      color: grey;
+      margin-top: 0.5em;
+  }
+  
+  .offer-price {
+      font-weight: bold;
+      margin-top: 0.5em;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+      .offer {
+          flex-basis: calc(50% - 20px);
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .offer {
+          flex-basis: 100%;
+      }
+  }
+  
+  /* User Info Styles */
+  .user-info {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      cursor: pointer;
+      font-size: 1.1em;
+  }
+  
+  .user-name {
+      margin-right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+  }
+  
+  .user-info ion-icon {
+      vertical-align: middle;
+      margin-right: 5px;
+  }
+  
+  /* Dropdown Styles */
+  .user-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+      transition: opacity 0.3s ease-in-out;
+  }
+  
+  .user-dropdown li {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  
+  .user-dropdown li:hover {
+      background-color: #eaeaea;
+  }
+  
+  .user-info:hover .user-dropdown {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+  }
+  
+      .user-info {
+    position: relative;
+    display: inline-block;
+}
+
+.user-info ion-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.user-dropdown li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.user-dropdown li:hover {background-color: #f1f1f1;}
+
+.user-info:hover .user-dropdown {
+    display: block;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 1em; /* Adjust the font size to match other links in the header */
+    color: inherit; /* This will ensure the color matches other header elements */
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.user-info ion-icon[name="person-circle-outline"] {
+    margin-right: 5px;
+    font-size: 1.25em; /* Adjust the icon size to match the text */
+}
+
+/* Ensures the user dropdown matches the header style */
+.user-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff; /* Background color of the dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 4px; /* Optional: Rounds the corners of the dropdown */
+}
+
+.user-dropdown li {
+    color: #b97311; /* Text color of the dropdown items */
+    padding: 10px 15px;
+    text-decoration: none; /* Removes underline from links */
+}
+
+.user-dropdown li:hover {
+    background-color: #f7f7f7; /* Hover background color for dropdown items */
+}
+
+/* Hover effect for the username and icon */
+.user-info:hover .user-dropdown {
+    display: block;
+}
+/* Additional styles for the header */
+.main-nav .user-info .user-name {
+    font-size: 1.5rem; /* Adjust to match the font size of other nav links */
+    color: #fff; /* Adjust to match the color of other nav links, assuming white */
+    margin-right: 10px; /* Adjust spacing to preference */
+    font-weight: normal; /* Adjust to match the font weight of other nav links */
+}
+
+.main-nav .user-info ion-icon[name="person-circle-outline"] {
+    font-size: 1.25rem; /* Adjust to align with the size of the text */
+    vertical-align: middle; /* Aligns the icon with the text */
+    color: #fff; /* Adjust to match the color of other nav links, assuming white */
+}
+
+/* Ensures the dropdown inherits styles from the user info */
+.main-nav .user-info .user-dropdown {
+    background-color: #330000; /* Adjust to match the nav color scheme */
+    color: #fff; /* Adjust for readable dropdown text */
+}
+
+.main-nav .user-info .user-dropdown li {
+    color: #fff; /* Adjust for readable dropdown items */
+}
+
+.main-nav .user-info .user-dropdown li:hover {
+    background-color: #330000; /* Adjust hover color to preference */
+}
+/* Styles pour les liens dans le menu déroulant */
+.user-info .user-dropdown a {
+  font-size: 1.25rem;
+    color: #ffffff; /* Remplacez cette couleur hexadécimale par celle que vous préférez */
+    /* Ajoutez d'autres propriétés de style si nécessaire */
+}
+
+/* Styles pour les liens dans le menu déroulant au survol */
+.user-info .user-dropdown a:hover {
+  font-size: 1.25rem; 
+    color: #ffffff; /* Couleur au survol, un peu plus foncée par exemple */
+    /* Ajoutez d'autres propriétés de style au survol si nécessaire */
+}
+
+
+
+
+/* Styles pour la section Voyage Individuel */
+.individual-travel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+
+
+    body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.8;
+  color: #333;
+  background-color: #ffffff;
+  font-size: 16px;
+   }
+    /* Contenu Principal */
+    .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Détails du Voyage */
+    .voyage-details {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .voyage-header {
+        background-color: #ffffff;
+        color: #330000;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .voyage-title {
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+    .voyage-body {
+        
+        display: flex;
+        padding: 30px;
+        align-items: center;
+    }
+
+    .voyage-image {
+        width: 50%;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 4px;
+    }
+
+    .voyage-info {
+        flex: 1;
+        background-color: #f5cba7;
+    }
+
+    .additional-info p {
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin: 10px 0;
+    }
+
+    .voyage-description {
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .voyage-actions {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .btn-reserver, .btn-en-savoir-plus {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1.8rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-reserver:hover, .btn-en-savoir-plus:hover {
+        background-color: #218838;
+    }
+
+    /* Ajustements Responsifs */
+    @media (max-width: 768px) {
+        .voyage-body {
+            flex-direction: column;
+        }
+
+        .voyage-image {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+    
+
+.voyage-body {
+    display: flex;
+    padding: 30px;
+    align-items: start;
+    flex-wrap: wrap;
+}
+
+.voyage-images {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.voyage-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.voyage-info {
+    flex: 2;
+    /* Existing styling */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .voyage-body {
+        flex-direction: column;
+    }
+
+    .voyage-images, .voyage-info {
+        margin-right: 0;
+    }
+}
+.voyage-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Ajustez l'espacement autour des éléments */
+  padding: 20px;
+}
+
+.image-container {
+  flex-basis: 40%; /* Ajustez la largeur de base de l'image */
+  margin-right: 20px; /* Espace entre l'image et les informations */
+}
+
+.voyage-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Coins arrondis de l'image */
+}
+
+.voyage-info {
+  flex-basis: 60%; /* Ajustez la largeur de base des informations */
+  /* Reste du style pour .voyage-info */
+}
+
+/* Pour s'assurer que le design est réactif sur les petits écrans */
+@media (max-width: 768px) {
+  .voyage-body {
+    flex-direction: column;
+  }
+  
+  .image-container {
+    flex-basis: 100%;
+    margin: 0 auto 20px; /* Centrer l'image et ajouter de l'espace en dessous */
+  }
+  
+  .voyage-info {
+    flex-basis: 100%;
+  }
+}
+/* Styles pour Swiper */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff;
+  left: 10px; /* Ajuster en fonction du placement souhaité pour 'prev' */
+  right: 10px; /* Ajuster en fonction du placement souhaité pour 'next' */
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Affichage du bouton suivant à droite */
+.swiper-button-next {
+  right: 10px;
+  left: auto;
+}
+
+/* Affichage du bouton précédent à gauche */
+.swiper-button-prev {
+  left: 10px;
+  right: auto;
+}
+
+/* Styles pour responsive */
+@media (max-width: 768px) {
+  .swiper-slide {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #333; /* Couleur des boutons pour une visibilité accrue sur écrans petits */
+  }
+}
+.swiper-container {
+    width: 100%; /* Largeur du carrousel */
+    height: auto; /* Hauteur automatique en fonction des images */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.swiper-slide img {
+    max-width: 80%; /* Maximum de 80% de la largeur de la diapositive */
+    max-height: 400px; /* Maximum de 400px de hauteur */
+    width: auto; /* Largeur auto pour maintenir le ratio de l'image */
+    height: auto; /* Hauteur auto pour maintenir le ratio de l'image */
+    margin: 0 auto; /* Centrage horizontal */
+}
+.voyage-info {
+    background-color: #f5f5f7; /* Couleur d'arrière-plan douce */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour la profondeur */
+    padding: 20px; /* Espace interne pour le contenu */
+    margin-top: 20px; /* Espace au-dessus de la section */
+    color: #333; /* Couleur de texte */
+    line-height: 1.6; /* Espacement des lignes pour la lisibilité */
+}
+
+.voyage-info h2, .voyage-info p {
+    margin-bottom: 15px; /* Espace entre les paragraphes */
+}
+
+.voyage-info h2 {
+    color: #e84a5f; /* Couleur pour les titres */
+    font-size: 2rem; /* Taille de la police pour les titres */
+}
+
+.voyage-info p {
+    font-size: 2rem; /* Taille de la police pour le texte */
+    text-align: justify; /* Justifier le texte pour une meilleure présentation */
+}
+
+/* Effet de transition sur les éléments interactifs */
+.voyage-info a {
+    color: #e84a5f; /* Couleur des liens */
+    text-decoration: none; /* Pas de soulignement */
+    transition: color 0.3s ease; /* Transition pour le survol */
+}
+
+.voyage-info a:hover {
+    color: #d32f2f; /* Couleur au survol */
+}
+
+/* Pour les écrans plus petits */
+@media (max-width: 768px) {
+    .voyage-info {
+        margin-top: 0;
+        padding: 15px;
+    }
+}
+.voyage-description {
+    background-color: #ffffff; /* Fond blanc pour la clarté */
+    padding: 20px; /* Espacement interne */
+    border-radius: 8px; /* Coins arrondis pour un look moderne */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile pour la profondeur */
+    margin-top: 20px; /* Espace au-dessus de la section */
+}
+
+.voyage-description h2 {
+    color: #333; /* Couleur foncée pour le titre */
+    font-size: 2rem; /* Taille de la police pour le titre */
+    margin-bottom: 10px; /* Espace sous le titre */
+}
+
+.voyage-description p {
+    color: #666; /* Couleur plus douce pour le texte */
+    font-size: 1.5rem; /* Taille de la police pour le texte */
+    line-height: 1.6; /* Hauteur de ligne pour la lisibilité */
+    text-align: justify; /* Alignement du texte pour une présentation uniforme */
+    margin-bottom: 15px; /* Espace entre les paragraphes */
+}
+
+/* Style pour les listes à puces */
+.voyage-description ul {
+    list-style-type: disc; /* Type de puces */
+    margin-left: 20px; /* Espace à gauche pour l'indentation */
+}
+
+.voyage-description ul li {
+    margin-bottom: 5px; /* Espace entre les éléments de la liste */
+}
+
+/* Pour les écrans plus petits */
+@media (max-width: 768px) {
+    .voyage-description {
+        padding: 15px;
+    }
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.reservation-section {
+  background-color: #f5f5f7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.reservation-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-submit {
+  background-color: #330000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.btn-submit:hover {
+  background-color: #330000;
+}
+
+.total-price {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.payment-info {
+  margin-top: 20px;
+}
+
+
+
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f7; /* Une couleur de fond légère */
+    font-size: 16px;
+}
+
+.main-content {
+    background-color: #ffffff; /* Couleur de fond du contenu principal */
+}
+
+.reservation-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.reservation-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    background-color: #330000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.btn-submit:hover {
+    background-color: #330000;
+}
+.reservation-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #330000; /* Couleur verte assortie au bouton */
+}
+
+</style>
+  <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href=" {% static 'css/queries.css' %} " />
+  <title>JustGO — Travel Agency</title>
+
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <a href="#">
+      {% load static %}
+     <img class="logo" src="{% static 'img/justGo-logo-light.png' %}" alt="justGO" />
+    </a>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+      <li><a class="main-nav-link" href="{% url 'blog:home' %}">Home</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_voyage' %}">Travel Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_special' %}">Special Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:activities' %}">Activity</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:about' %}">About us</a></li>
+      {% if user.is_authenticated %}
+      <li class="user-info">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span class="user-name">Hello, {{ user.username }}</span>
+        <ul class="user-dropdown">
+            <li><a href="{% url 'blog:Profile' %}">My profile</a></li>
+            <li><a href="{% url 'blog:logout' %}">Sing out</a></li>
+        </ul>
+      </li>
+      {% else %}
+      <li><a class="main-nav-link" href="{% url 'blog:signin' %}">Sing In</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:signup' %}">Register</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close"></ion-icon>
+    </button>
+  </header>
+   
+  <main class="main-content">
+    <section class="reservation-section">
+      <h1 class="reservation-title">Make Your Reservation</h1>
+      <form class="reservation-form" method="post" action="{% url 'blog:reserver'  id=offre_voyage_id %}">
+        {% csrf_token %}
+        <!-- Inside your reservation form -->
+        
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+          <label for="numPlaces">Number of Places:</label>
+          <input type="number" id="numPlaces" name="numPlaces" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="total-price" data-offer-price="{{ prix_offre }}">
+          <input type="hidden" id="totalPriceInput" name="totalPrice" value="0">
+          <p>Total Price: <span  name="totalPrice" id="totalPrice">€0.00</span></p>
+      </div>
+        <div class="payment-info">
+          <!-- Payment details here -->
+        </div>
+       <button type="submit" class="btn-submit">Submit Reservation</button>
+      </form>
+    </section>
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/desvg@1.0.2/desvg.min.js"></script>
+    
+    <!-- Dans votre modèle HTML -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          var numPlacesInput = document.getElementById('numPlaces');
+          var totalPriceElement = document.getElementById('totalPrice');
+          var totalPriceInput = document.getElementById('totalPriceInput');
+          var offerPrice = parseFloat(document.querySelector('.total-price').dataset.offerPrice);
+  
+          numPlacesInput.addEventListener('input', updateTotalPrice);
+  
+          function updateTotalPrice() {
+            var numPlacesValue = parseInt(numPlacesInput.value) || 0;
+              var totalPrice = numPlacesValue * offerPrice;
+             
+              totalPriceElement.textContent = '€' + totalPrice.toFixed(2);
+  
+              // Update the hidden input field value
+              totalPriceInput.value = totalPrice.toFixed(2);
+          }
+      });
+  </script>
+  
+
+  
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        // Configurez ici les options de Swiper
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+</script>
+      
+  </body>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-container container">
+      <div class="footer-col-1">
+        <a href="#"
+          ><img
+            class="footer-logo"
+            src="{% static 'img/justGo-logo-light.png' %}"
+            alt="logo"
+        /></a>
+
+        <p class="footer-text">
+          This page is made for learning purposes only. Copyright ©
+          <span class="year"></span>
+          Stefan Gogov. All rights reserved.
+        </p>
+
+        <div class="social-media-logos">
+          <a href="#">
+            <ion-icon
+              class="social-media-logo"
+              name="logo-instagram"
+            ></ion-icon>
+          </a>
+          <a href="#"
+            ><ion-icon
+              class="social-media-logo"
+              name="logo-facebook"
+            ></ion-icon
+          ></a>
+          <a href="#"
+            ><ion-icon
+              class="social-media-logo"
+              name="logo-twitter"
+            ></ion-icon
+          ></a>
+          <a href="#"
+            ><ion-icon
+              class="social-media-logo"
+              name="logo-youtube"
+            ></ion-icon
+          ></a>
+        </div>
+
+        <ul class="footer-imgs">
+          <li>
+            <a href="#cta">
+              <img
+                class="footer-img"
+                src="{% static 'img/footer/footer-img-1.jpg' %}"
+                alt="footer image"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#cta">
+              <img
+                class="footer-img"
+                src="{% static 'img/footer/footer-img-2.jpg' %}"
+                alt="footer image"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#cta">
+              <img
+                class="footer-img"
+                src="{% static 'img/footer/footer-img-3.jpg' %}"
+                alt="footer image"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col-2">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a class="footer-link" href="#">Home</a></li>
+          <li><a class="footer-link" href="#">About us</a></li>
+          <li><a class="footer-link" href="#locations">Destinations</a></li>
+          <li><a class="footer-link" href="#">Partners</a></li>
+          <li><a class="footer-link" href="#">Tours</a></li>
+          <li><a class="footer-link" href="#cta">Contact</a></li>
+          <li><a class="footer-link" href="#">Careers</a></li>
+          <li><a class="footer-link" href="#blogs">Blog</a></li>
+        </ul>
+
+        <h4 class="footer-heading">Popular Search</h4>
+        <div class="search-items">
+          <a class="search-item" href="#">Tours</a>
+          <a class="search-item" href="#">Hotels</a>
+          <a class="search-item" href="#">Car Rentals</a>
+          <a class="search-item" href="#">Cruises</a>
+          <a class="search-item" href="#">Vacations</a>
+        </div>
+      </div>
+
+      <div class="footer-col-3">
+        <h4 class="footer-heading">Blog and News</h4>
+        <div class="footer-blogs">
+          <div class="footer-blog">
+            <img src="{% static 'img/footer/blog-footer-1.jpg' %}" alt="footer blog" />
+            <a href="#blogs" class="footer-blog-heading">
+              How to travel safely around the world
+            </a>
+            <span class="footer-blog-date">May 20, 2023</span>
+          </div>
+
+          <div class="footer-blog">
+            <img src="{% static 'img/footer/blog-footer-2.jpg' %}" alt="footer blog" />
+            <a href="#blogs" class="footer-blog-heading">
+              How to become the best tour guide
+            </a>
+            <span class="footer-blog-date">Feb 17, 2023</span>
+          </div>
+
+          <div class="footer-blog">
+            <img src="{% static 'img/footer/blog-footer-3.jpg' %}" alt="footer blog" />
+            <a href="#blogs" class="footer-blog-heading"
+              >Wandering around Venice</a
+            >
+            <span class="footer-blog-date">Mar 24, 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col-4">
+        <h4 class="footer-heading">Contact Us</h4>
+        <div class="footer-contacts">
+          <div class="footer-contact-item">
+            <figure class="footer-figure">
+              <ion-icon class="footer-icon" name="pin"></ion-icon>
+            </figure>
+
+            <span class="footer-detail">26 Maritsa, Plovdiv, Bulgaria</span>
+            <span class="footer-detail-text">Meet us in the office</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <figure class="footer-figure">
+              <ion-icon class="footer-icon" name="call"></ion-icon>
+            </figure>
+            <span class="footer-detail">+359 89 999 8888</span>
+            <span class="footer-detail-text">Make a call</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <figure class="footer-figure">
+              <ion-icon class="footer-icon" name="mail"></ion-icon>
+            </figure>
+            <a class="footer-detail" href="mailto:info@justgo.com"
+              >info@justgo.com</a
+            >
+            <span class="footer-detail-text">Send us an email</span>
+          </div>
+
+          <div class="footer-contact-item">
+            <figure class="footer-figure">
+              <ion-icon class="footer-icon" name="clock"></ion-icon>
+            </figure>
+            <span class="footer-detail">10 AM - 6 PM (Sun - Sun)</span>
+            <span class="footer-detail-text">Office hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

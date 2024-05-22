@@ -1,0 +1,225 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="JustGO Travel Agency has been providing clients with the best travel guides, travel information, and vacation packages for more than a decade. We specialize in travel packages to Europe, Asia, Africa, South America, and the Caribbean. Our guides and services are second to none."
+  />
+  <meta
+    name="keywords"
+    content="travel agency, travel, travel guides, travel information, vacation packages, travel packages, Europe, Asia, Africa, South America, Caribbean"
+  />
+  <meta name="author" content="Stefan Gogov" />
+
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- SWIPER CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+  />
+  
+  {% load static %}
+<script>
+  var staticBaseUrl = "{% static '' %}";
+</script>
+ <style>/* CSS pour centraliser le formulaire */
+  .auth-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh; /* hauteur complète de la vue */
+  }
+  .auth-container form {
+  width: 100%;
+  max-width: 400px; /* ajuster la largeur maximale */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* fond semi-transparent */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.btn--full {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #0056b3; /* couleur de fond */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+/* CSS pour centraliser le formulaire */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* hauteur complète de la vue */
+    margin: 0; /* Remove default margin */
+}
+
+.auth-container form {
+    width: 100%;
+    max-width: 400px; /* ajuster la largeur maximale */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* fond semi-transparent */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn--full:hover {
+  background-color: #003d82; /* couleur au survol */
+}
+@media (max-width: 600px) {
+  .auth-container form {
+      padding: 10px;
+  }
+}
+/* CSS pour le titre S'inscrire */
+.heading-primary {
+  color: #ffffff; /* Couleur blanche pour le texte */
+  text-shadow: 2px 2px 4px #000000; /* Ombre noire pour le distinguer du fond */
+}
+
+  
+  /* CSS pour l'arrière-plan */
+  body {
+      background-image: url('{% static "img/blogs/Venice.jpg" %}');
+      background-size: cover;
+      background-position: center;
+  }
+  
+  /* Ou si vous voulez ajouter l'arrière-plan à la div du formulaire */
+  .auth-container {
+      background-image: url('{% static "img/blogs/Venice.jpg" %}');
+      background-size: cover;
+      background-position: center;
+  }
+  /* Style pour le texte de redirection vers signup */
+.signup-text {
+  text-align: center;
+  margin-bottom: 20px; /* ou la valeur que vous préférez */
+}
+
+.signup-text a {
+  color: #0056b3; /* ou la couleur que vous préférez */
+  text-decoration: none; /* enlève le soulignement */
+}
+
+.signup-text a:hover {
+  text-decoration: underline; /* ajoute un soulignement au survol */
+}
+
+  </style>
+  <!-- CSS --->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href=" {% static 'css/queries.css' %} " />
+  <title>JustGO — Travel Agency</title>
+
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <a href="#">
+      {% load static %}
+     <img class="logo" src="{% static 'img/justGo-logo-light.png' %}" alt="justGO" />
+    </a>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+      <li><a class="main-nav-link" href="{% url 'blog:home' %}">Home</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_voyage' %}">Travel Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_special' %}">Special Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:activities' %}">Activity</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:about' %}">About us</a></li>
+      {% if user.is_authenticated %}
+      <li class="user-info">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span class="user-name">Hello, {{ user.username }}</span>
+        <ul class="user-dropdown">
+            <li><a href="{% url 'blog:Profile' %}">My profile</a></li>
+            <li><a href="{% url 'blog:logout' %}">Sing out</a></li>
+        </ul>
+      </li>
+      {% else %}
+      <li><a class="main-nav-link" href="{% url 'blog:signin' %}">Sing In</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:signup' %}">Register</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close"></ion-icon>
+    </button>
+  </header>
+  <!-- ================= MAIN ================= -->
+ 
+  <main>
+    <div class="auth-container">
+       
+      <form action="{% url 'blog:signup' %}" method="post">
+        <h1 class="heading-primary" style="text-align: center;" >Inscription</h1>
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="first_name">Prénom</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div class="form-group">
+          <label for="last_name">Nom de famille</label>
+          <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password1">Mot de passe</label>
+          <input type="password" id="password1" name="password1" required>
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirmez le mot de passe</label>
+          <input type="password" id="password2" name="password2" required>
+        </div>
+        <button type="submit" class="btn btn--full">S'inscrire</button>
+        <p class="signup-text">
+          Déjà membre ? <a href="{% url 'blog:signin' %}">Connectez-vous ici</a>
+        </p>
+      </form>      
+    </div>
+</main>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

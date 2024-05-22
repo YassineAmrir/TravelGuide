@@ -1,0 +1,446 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="JustGO Travel Agency has been providing clients with the best travel guides, travel information, and vacation packages for more than a decade. We specialize in travel packages to Europe, Asia, Africa, South America, and the Caribbean. Our guides and services are second to none."
+  />
+  <meta
+    name="keywords"
+    content="travel agency, travel, travel guides, travel information, vacation packages, travel packages, Europe, Asia, Africa, South America, Caribbean"
+  />
+  <meta name="author" content="Stefan Gogov" />
+
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- SWIPER CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+  />
+  <style>
+    .user-info {
+  position: relative;
+  display: inline-block;
+}
+
+.user-info ion-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.user-dropdown li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.user-dropdown li:hover {background-color: #f1f1f1;}
+
+.user-info:hover .user-dropdown {
+  display: block;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 1em; /* Adjust the font size to match other links in the header */
+  color: inherit; /* This will ensure the color matches other header elements */
+  cursor: pointer;
+  text-decoration: none; /* Removes underline from links */
+}
+
+.user-info ion-icon[name="person-circle-outline"] {
+  margin-right: 5px;
+  font-size: 1.25em; /* Adjust the icon size to match the text */
+}
+
+/* Ensures the user dropdown matches the header style */
+.user-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff; /* Background color of the dropdown */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border-radius: 4px; /* Optional: Rounds the corners of the dropdown */
+}
+
+.user-dropdown li {
+  color: #b97311; /* Text color of the dropdown items */
+  padding: 10px 15px;
+  text-decoration: none; /* Removes underline from links */
+}
+
+.user-dropdown li:hover {
+  background-color: #f7f7f7; /* Hover background color for dropdown items */
+}
+
+/* Hover effect for the username and icon */
+.user-info:hover .user-dropdown {
+  display: block;
+}
+/* Additional styles for the header */
+.main-nav .user-info .user-name {
+  font-size: 1.5rem; /* Adjust to match the font size of other nav links */
+  color: #fff; /* Adjust to match the color of other nav links, assuming white */
+  margin-right: 10px; /* Adjust spacing to preference */
+  font-weight: normal; /* Adjust to match the font weight of other nav links */
+}
+
+.main-nav .user-info ion-icon[name="person-circle-outline"] {
+  font-size: 1.25rem; /* Adjust to align with the size of the text */
+  vertical-align: middle; /* Aligns the icon with the text */
+  color: #fff; /* Adjust to match the color of other nav links, assuming white */
+}
+
+/* Ensures the dropdown inherits styles from the user info */
+.main-nav .user-info .user-dropdown {
+  background-color: #330000; /* Adjust to match the nav color scheme */
+  color: #fff; /* Adjust for readable dropdown text */
+}
+
+.main-nav .user-info .user-dropdown li {
+  color: #fff; /* Adjust for readable dropdown items */
+}
+
+.main-nav .user-info .user-dropdown li:hover {
+  background-color: #330000; /* Adjust hover color to preference */
+}
+/* Styles pour les liens dans le menu déroulant */
+.user-info .user-dropdown a {
+font-size: 1.25rem;
+  color: #ffffff; /* Remplacez cette couleur hexadécimale par celle que vous préférez */
+  /* Ajoutez d'autres propriétés de style si nécessaire */
+}
+
+/* Styles pour les liens dans le menu déroulant au survol */
+.user-info .user-dropdown a:hover {
+font-size: 1.25rem; 
+  color: #ffffff; /* Couleur au survol, un peu plus foncée par exemple */
+  /* Ajoutez d'autres propriétés de style au survol si nécessaire */
+}
+
+.main-profile {
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+
+.profile-section {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.profile-heading {
+  text-align: center;
+  color: #333;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.user-email {
+  font-size: 1rem;
+  color: #777;
+}
+
+.profile-actions .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+}
+
+.profile-actions .btn-danger {
+  background-color: #dc3545;
+}
+.profile-section {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .profile-heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+
+  .profile-info {
+    text-align: center;
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+
+  .user-name {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px; /* Add margin for spacing */
+  }
+
+  .user-email {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px; /* Add margin for spacing */
+  }
+
+  .profile-actions {
+    text-align: center;
+  }
+
+  .profile-actions .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+  }
+
+  .profile-actions .btn-danger {
+    background-color: #dc3545;
+  }
+  .user-info1 {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px; /* Add margin for spacing */
+  }
+
+  .profile-actions {
+    text-align: center;
+    margin-top: 20px; /* Add margin for spacing */
+  }
+  /* Style Général */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  background-color: #f3f3f3;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.main-nav-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* Profil */
+.profile-section {
+  background-color: #fff;
+  padding: 30px;
+  margin-top: 60px; /* Adjust based on header height */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+  border: 3px solid #007bff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Réservations */
+.reservation-card {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 
+0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.offre-title {
+color: #007bff;
+font-weight: bold;
+}
+
+/* Dates et Détails */
+.offre-details {
+color: #555;
+margin-bottom: 5px;
+}
+
+/* Footer */
+.footer {
+background-color: #333;
+color: #fff;
+padding: 20px;
+text-align: center;
+}
+
+.footer a {
+color: #007bff;
+}
+
+.footer a:hover {
+text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.profile-avatar {
+width: 100px;
+height: 100px;
+}
+
+.profile-section,
+.reservation-card {
+margin: 10px;
+padding: 20px;
+}
+}
+
+  </style>
+  
+  {% load static %}
+<script>
+  var staticBaseUrl = "{% static '' %}";
+</script>
+
+  <!-- CSS --->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href=" {% static 'css/queries.css' %} " />
+  <title>JustGO — Travel Agency</title>
+
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <a href="#">
+      {% load static %}
+     <img class="logo" src="{% static 'img/justGo-logo-light.png' %}" alt="justGO" />
+    </a>
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+      <li><a class="main-nav-link" href="{% url 'blog:home' %}">Home</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_voyage' %}">Travel Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:offres_special' %}">Special Offers</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:activities' %}">Activity</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:about' %}">About us</a></li>
+      {% if user.is_authenticated %}
+      <li class="user-info">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span class="user-name">Hello, {{ user.username }}</span>
+        <ul class="user-dropdown">
+            <li><a href="{% url 'blog:Profile' %}">My profile</a></li>
+            <li><a href="{% url 'blog:logout' %}">Sing out</a></li>
+        </ul>
+      </li>
+      {% else %}
+      <li><a class="main-nav-link" href="{% url 'blog:signin' %}">Sing In</a></li>
+      <li><a class="main-nav-link" href="{% url 'blog:signup' %}">Register</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close"></ion-icon>
+    </button>
+  </header>
+  <main class="main-profile">
+    <section class="profile-section">
+      <h1 class="profile-heading">My profile :</h1>
+      <div class="profile-info">
+        <img class="profile-avatar"  src="{{ profil.image.url }}" alt="Avatar de l'utilisateur">
+        <h2 class="user-name">Hello, {{ user.first_name }} {{ user.last_name }}</h2>
+        <p class="user-email">{{ user.email }}</p>
+        <p class="user-email">{{ profil.age }}</p>
+      </div>
+      <div class="profile-actions">
+        <a href="{% url 'blog:editProfile' %}" class="btn">Edit Profile</a>
+        <a href="{% url 'blog:logout' %}" class="btn btn-danger">Sign out</a>
+      </div>
+    </section>
+    
+<!-- Section Réservations -->
+<main class="main-profile">
+  <section class="profile-section">
+      <!-- ... Autres éléments de profil ... -->
+
+      <h2 class="reservations-heading">My Reservations</h2>
+      <div class="reservations-container">
+        {% for offre_voyage, num_places in offres_voyage.items %}
+            <div class="reservation-card">
+                <h3 class="offre-title">{{ offre_voyage.title }}</h3>
+                <p class="offre-details">Destination: {{ offre_voyage.destination }}</p>
+                <p class="offre-details">Date de départ: {{ offre_voyage.start_date|date:"d M Y" }}</p>
+                <p class="offre-details">Date de retour: {{ offre_voyage.end_date|date:"d M Y" }}</p>
+                <p class="offre-details">Prix: {{ offre_voyage.price }} €</p>
+                <p class="offre-details">Number of Places: {{ num_places }}</p>
+                <!-- Add more details here if needed -->
+            </div>
+        {% empty %}
+            <p>No reservations found.</p>
+        {% endfor %}
+    </div>
+  </section>
+</main>
+
+  </main>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
